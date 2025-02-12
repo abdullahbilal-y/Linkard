@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\(profile)",
+    "\\app\\(profile)\\[username]",
+    "\\app\\api",
+    "\\app\\api\\links",
+    "\\backend",
+    "\\backend\\models",
+    "\\backend\\routes",
+    "\\src",
+    "\\src\\components"
+  ],
+  "SelectedNode": "\\app\\(profile)\\[username]\\page.js",
+  "PreviewInSolutionExplorer": false
+}
