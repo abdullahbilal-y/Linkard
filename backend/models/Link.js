@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
 const LinkSchema = new mongoose.Schema({
-  platform: String,
-  url: String,
+    title: String,
+    url: String,
+    userId: String, // This links the link to a specific user
 });
 
-module.exports = mongoose.models.Link || mongoose.model("Link", LinkSchema);
+module.exports = mongoose.model("Link", LinkSchema);

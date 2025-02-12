@@ -1,6 +1,24 @@
-const express = require("express");
+﻿const express = require("express");
 const router = express.Router();
-const User = require("../models/User"); // Assuming you have a User model
+const User = require("../models/User"); // Import User model
+const Link = require("../models/Link"); // Import Link model
+
+// ✅ Move this route to the top
+// Get all links for a specific user
+router.get("/links/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const links = await Link.find({ userId });
+
+        if (!links.length) {
+            return res.status(404).json({ error: "No links found" });
+        }
+
+        res.json(links);
+    } catch (err) {
+        res.status(500).json({ error: "Server error" });
+    }
+});
 
 // GET user data by username
 router.get("/:username", async (req, res) => {
