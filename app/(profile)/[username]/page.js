@@ -12,6 +12,7 @@ const UserProfile = () => {
     useEffect(() => {
         async function fetchParams() {
             const unwrappedParams = await params; // Wait for params to resolve
+            console.log("Username from params:", unwrappedParams.username); // Debugging
             setUsername(unwrappedParams.username);
         }
         fetchParams();
@@ -23,7 +24,7 @@ const UserProfile = () => {
 
         const fetchData = async () => {
             try {
-                const res = await fetch(`/api/user/${username}`);
+                const res = await fetch(`http://localhost:3001/api/user/${username}`);
                 if (!res.ok) throw new Error("User not found");
                 const data = await res.json();
                 setUserData(data);
@@ -41,7 +42,7 @@ const UserProfile = () => {
 
         const fetchLinks = async () => {
             try {
-                const res = await fetch(`/api/user/links/${userData._id}`);
+                const res = await fetch(`http://localhost:3001/api/user/links/${userData._id}`);
                 if (!res.ok) throw new Error("No links found");
                 const links = await res.json();
                 setUserLinks(links);
