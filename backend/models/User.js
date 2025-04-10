@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true },
-  username: { type: String, unique: true },
-  profilePic: String,
+  name: { type: String, required: true },
+  email: { type: String, unique: true, required: true, match: /.+\@.+\..+/ },
+  username: { type: String, unique: true, required: true },
+  profilePic: { type: String, default: "" },
   links: [
     {
-      platform: String,
-      url: String,
+      platform: { type: String, required: true },
+      url: { type: String, required: true },
     },
   ],
 });

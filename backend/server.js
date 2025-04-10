@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" })); // Replace with your frontend's URL
 app.use(express.json());
 
 const PORT = process.env.PORT || 3001; // Ensure it's 3001
@@ -21,6 +21,9 @@ const Link = require("./models/Link"); // ✅ Corrected: Require models at the t
 // Routes
 const userRoutes = require("./routes/userRoutes"); // ✅ Only require it once
 app.use("/api/user", userRoutes);
+
+const linkRoutes = require("./routes/linkRoutes");
+app.use(linkRoutes);
 
 // Debugging to ensure routes are working
 console.log("✅ Routes loaded");
@@ -60,5 +63,5 @@ app.post("/api/links", async (req, res) => {
 
 // Start Server (Ensure it is called only once)
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });

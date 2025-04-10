@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LinkCard({ link }) {
   return (
-    <div className="bg-white shadow-lg rounded-xl p-4 flex flex-col items-center">
+    <div className="bg-black shadow-lg rounded-xl p-4 flex flex-col items-center">
       <h2 className="text-lg font-semibold">{link.title}</h2>
       <a
         href={link.url}
