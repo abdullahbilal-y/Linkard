@@ -3,56 +3,29 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 const UserProfile = () => {
-    const params = useParams(); // Fix: params is now a Promise in Next.js 15+
-    const [username, setUsername] = useState(null);
+    const { username } = useParams(); // ✅ Fix: No need to use await
     const [userData, setUserData] = useState(null);
     const [userLinks, setUserLinks] = useState([]);
 
-    // Unwrap params (Fix for Next.js 15+)
-    useEffect(() => {
-        async function fetchParams() {
-            const unwrappedParams = await params; // Wait for params to resolve
-            console.log("Username from params:", unwrappedParams.username); // Debugging
-            setUsername(unwrappedParams.username);
-        }
-        fetchParams();
-    }, [params]);
+    console.log("🔍 Username from URL:", username); // Debugging
 
     // Fetch User Data
     useEffect(() => {
-        if (!username) return; // Ensure username is available
+        if (!username) return; // Ensure username exists
 
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://localhost:3001/api/user/${username}`);
+                const res = await fetch(`http://localhost:5000/api/user/${username}`);
                 if (!res.ok) throw new Error("User not found");
                 const data = await res.json();
                 setUserData(data);
             } catch (error) {
-                console.error(error);
+                console.error("❌ Fetch error:", error);
             }
         };
 
         fetchData();
     }, [username]);
-
-    // Fetch User Links
-    useEffect(() => {
-        if (!userData) return; // Ensure user data is loaded first
-
-        const fetchLinks = async () => {
-            try {
-                const res = await fetch(`http://localhost:3001/api/user/links/${userData._id}`);
-                if (!res.ok) throw new Error("No links found");
-                const links = await res.json();
-                setUserLinks(links);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchLinks();
-    }, [userData]);
 
     return (
         <div>
@@ -61,16 +34,6 @@ const UserProfile = () => {
                     <h1>{userData.name}</h1>
                     <img src={userData.profilePicture} alt="Profile" />
                     <p>{userData.bio}</p>
-
-                    <ul>
-                        {userLinks.map((link) => (
-                            <li key={link._id}>
-                                <a href={link.url} target="_blank" rel="noopener noreferrer">
-                                    {link.title}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
                 </>
             ) : (
                 <p>Loading user profile...</p>
