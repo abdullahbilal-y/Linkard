@@ -1,0 +1,22 @@
+// TODO: Implement a Social Links Card Component
+// 1. Display social/profile links as circular buttons.
+//    - Use platform favicon/logo.
+//    - Default icon color: black/white.
+//    - On hover: change icon/bg to platform's primary brand color.
+//    - Platforms: Facebook, GitHub, Instagram, TikTok, LinkedIn, WhatsApp, Upwork, etc.
+//
+// 2. For unknown/custom links:
+//    - Show URL as normal button or use custom icon (if provided).
+//
+// 3. Only show buttons for non-empty fields.
+//
+// TODO: Create Edit Social Links UI
+// - Vertical form styled with `form-input`, `btn` classes.
+// - Inputs for: Facebook, GitHub, Instagram, Twitter, LinkedIn, TikTok, WhatsApp, YouTube,
+//   Upwork, Behance, Dribbble, Discord, Threads, Snapchat, Reddit, Medium.
+// - Include label, placeholder, pattern matching, optional icon/hint.
+// - "Custom Link" section:
+//     - Input for custom URL.
+//     - Optional image upload (PNG/JPG).
+// - "Save Changes" button.
+// - Don’t render empty fields or show empty links in the card.

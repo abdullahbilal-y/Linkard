@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
       url: { type: String, required: true },
     },
   ],
+  ID: { type: String, unique: true }, // Add the ID field
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
